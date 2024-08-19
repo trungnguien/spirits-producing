@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tính Sai Số Độ Cồn</title>
+    <script>
+        function calculateAlcoholAdjustment() {
+            // Lấy giá trị từ các trường nhập
+            var alcoholContent = parseFloat(document.getElementById('alcoholContent').value);
+            var temperatureMeasured = parseFloat(document.getElementById('temperatureMeasured').value);
+            var temperatureStandard = parseFloat(document.getElementById('temperatureStandard').value);
+            var correctionFactor = parseFloat(document.getElementById('correctionFactor').value);
+
+            // Tính sai số do nhiệt độ
+            var temperatureError = correctionFactor * (temperatureMeasured - temperatureStandard);
+            
+            // Điều chỉnh độ cồn
+            var adjustedAlcoholContent = alcoholContent + temperatureError;
+
+            // Hiển thị kết quả
+            document.getElementById('result').innerText = 'Độ cồn điều chỉnh: ' + adjustedAlcoholContent.toFixed(2) + '%';
+        }
+    </script>
+</head>
+<body>
+    <h1>Tính Sai Số Độ Cồn</h1>
+    <label for="alcoholContent">Độ cồn đo được (%):</label>
+    <input type="number" id="alcoholContent" step="0.01" required><br>
+    
+    <label for="temperatureMeasured">Nhiệt độ đo (°C):</label>
+    <input type="number" id="temperatureMeasured" step="0.1" required><br>
+    
+    <label for="temperatureStandard">Nhiệt độ chuẩn (°C):</label>
+    <input type="number" id="temperatureStandard" step="0.1" value="20" required><br>
+    
+    <label for="correctionFactor">Hệ số hiệu chỉnh:</label>
+    <input type="number" id="correctionFactor" step="0.01" value="0.3" required><br>
+    
+    <button onclick="calculateAlcoholAdjustment()">Tính</button>
+    
+    <p id="result"></p>
+</body>
+</html>
