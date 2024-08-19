@@ -4,6 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tính Sai Số Độ Cồn</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        label, p { margin-top: 10px; }
+        input { margin-bottom: 10px; }
+    </style>
     <script>
         function calculateAlcoholAdjustment() {
             // Lấy giá trị từ các trường nhập
@@ -25,19 +30,21 @@
 </head>
 <body>
     <h1>Tính Sai Số Độ Cồn</h1>
-    <label for="alcoholContent">Độ cồn đo được (%):</label>
-    <input type="number" id="alcoholContent" step="0.01" required><br>
+    <p><strong>Giải thích:</strong> Đo độ cồn trong rượu có thể bị ảnh hưởng bởi nhiệt độ. Khi nhiệt độ thay đổi, mật độ của rượu thay đổi, điều này có thể làm độ cồn đo được không chính xác. Chúng ta cần điều chỉnh kết quả đo để có được độ cồn chính xác.</p>
     
-    <label for="temperatureMeasured">Nhiệt độ đo (°C):</label>
-    <input type="number" id="temperatureMeasured" step="0.1" required><br>
+    <label for="alcoholContent">Nhập độ cồn đo được (%):</label>
+    <input type="number" id="alcoholContent" step="0.01" placeholder="Ví dụ: 40" required><br>
+    
+    <label for="temperatureMeasured">Nhiệt độ đo hiện tại (°C):</label>
+    <input type="number" id="temperatureMeasured" step="0.1" placeholder="Ví dụ: 18" required><br>
     
     <label for="temperatureStandard">Nhiệt độ chuẩn (°C):</label>
-    <input type="number" id="temperatureStandard" step="0.1" value="20" required><br>
+    <input type="number" id="temperatureStandard" step="0.1" value="20" placeholder="Thường là 20°C" required><br>
     
-    <label for="correctionFactor">Hệ số hiệu chỉnh:</label>
-    <input type="number" id="correctionFactor" step="0.01" value="0.3" required><br>
+    <label for="correctionFactor">Hệ số hiệu chỉnh (thay đổi nhỏ có thể là 0.3):</label>
+    <input type="number" id="correctionFactor" step="0.01" value="0.3" placeholder="Ví dụ: 0.3" required><br>
     
-    <button onclick="calculateAlcoholAdjustment()">Tính</button>
+    <button onclick="calculateAlcoholAdjustment()">Tính Độ Cồn Điều Chỉnh</button>
     
     <p id="result"></p>
 </body>
